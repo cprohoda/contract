@@ -1,4 +1,5 @@
 use std:Collections::HashMap;
+// database dependency
 
 struct User {
 	username: str;
@@ -17,7 +18,7 @@ enum PermissionLevel {
 }
 
 impl User {
-	fn New() -> user {
+	fn new(username: &str) -> user {
 		// read from DB
 	}
 
@@ -28,6 +29,7 @@ impl User {
 	pub fn ChangePassword(&mut self, oldPassword: str, newPassword: str) {
 		// verify password here
 		self.password = newPassword;
+		// add to database
 	}
 
 	pub fn ViewHistory(self) {
@@ -47,6 +49,6 @@ impl User {
 
 pub fn login(username, password) -> user {
 	// verify password here
-	User.new(username)
+	User.new(&username)
 
 }
