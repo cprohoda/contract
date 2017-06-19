@@ -1,0 +1,3 @@
+struct contract {
+	date
+}
