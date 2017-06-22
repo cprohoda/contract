@@ -6,7 +6,7 @@ struct User {
 	displayName: str;
 	balance: f32;
 	history: Vec<str>;
-	skills: HashMap<&str, u32>;
+	skills: HashMap<str, u32>;
 	verified: bool;
 	permissions: PermissionLevel;
 }
@@ -18,8 +18,17 @@ enum PermissionLevel {
 }
 
 impl User {
-	fn new(username: &str) -> user {
+	pub fn new(username: str, displayName: str, permissions: PermissionLevel) -> user {
 		// read from DB
+		User { //temporary init until DB added
+			username: username,
+			displayName: displayName,
+			balance: 0f32,
+			history: Vec::new(),
+			skills: HashMap::new(),
+			permissions: permissions,
+			verified: true,
+		}
 	}
 
 	pub fn ChangeDisplayName(&mut self, newName: str) {
@@ -32,23 +41,22 @@ impl User {
 		// add to database
 	}
 
-	pub fn ViewHistory(self) {
+	pub fn ViewHistory(self) -> Vec<str> {
 		self.history
 	}
 
-	pub fn ViewSkills(self) {
+	pub fn ViewSkills(self) -> Vec<str> {
 		self.skills
 	}
 
-	pub fn ReturnRelevantSkills(self, relevantSkills: Vec<str>) {
+	// pub fn ReturnRelevantSkills(self, relevantSkills: Vec<str>) {
 
-	}
+	// }
 
 	pub fn PostContract(self, )
 }
 
-pub fn login(username, password) -> user {
+pub fn login(username, password) -> User {
 	// verify password here
-	User.new(&username)
-
+	User::new(username)
 }
