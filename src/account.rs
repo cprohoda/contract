@@ -53,7 +53,14 @@ impl User {
 
 	// }
 
-	pub fn PostContract(self, )
+	pub fn PostContract(self, ) -> ContractResult {
+		contact::new()
+
+	}
+
+	pub fn BidContract(self, ) -> ContractResult {
+
+	}
 }
 
 pub fn login(username, password) -> User {
