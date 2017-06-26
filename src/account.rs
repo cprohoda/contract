@@ -49,17 +49,34 @@ impl User {
 		self.skills
 	}
 
-	// pub fn ReturnRelevantSkills(self, relevantSkills: Vec<str>) {
-
-	// }
-
-	pub fn PostContract(self, ) -> ContractResult {
-		contact::new()
-
+	pub fn AddSkill(&mut self, skill: str) {
+		self.skills.insert(skill, 0u32);
 	}
 
-	pub fn BidContract(self, ) -> ContractResult {
+	pub fn Current(self) -> str {
+		self.username
+	}
 
+	pub fn PostContract(&mut self, ) -> ContractResult {
+		contract::new(self.Current, )
+	}
+
+	enum BidError {
+		lowBalance,
+		authorization,
+		authentication,
+	}
+
+	type BidResult = Result<(), BidError>;
+
+	pub fn BidContract(&mut self, contract: contract, bid: f32) -> BidResult {
+		if balance >= bid {
+			self.balance -= bid;
+			contract.AddBid(self, bid);
+			Ok(())
+		} else {
+			Err(BidError::lowBalance)
+		}
 	}
 }
 
