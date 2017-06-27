@@ -9,7 +9,8 @@ struct contract {
 	skills: Vec<str>,
 	compensation: f32,
 	owner: str,
-	bids: HashMap<str,f32>,
+	bids: Vec<Bid>,
+	filters: Vec<str>,
 }
 
 enum ContractType {
@@ -25,6 +26,17 @@ enum ContractError {
 
 type ContractResult = Result<contract, ContractError>; //
 
+struct Bid {
+	bidder: str,
+	skills: HashMap<str,u32>,
+	compensation: f32,
+	history: Vec<str>,
+}
+
+enum Filter {
+	ContractType,
+}
+
 impl contract {
 	fn new(user: User, startDate: time::Tm, interval: time::Duration, contractType: ContractType, description: str, title: str, skills: Vec<str>, compensation: f32,) -> contract {
 		contract {
@@ -36,11 +48,13 @@ impl contract {
 			title: title,
 			skills: skills,
 			compensation: compensation,
-			bids: HashMap::new(),
+			bids: Vec::new(),
 		}
 	}
 
 	fn AddBid(&mut self, user: User, bid: bid) {
 		self.bids.insert(user.current(), bid);
 	}
+
+	fn ReviewBids(self, )
 }

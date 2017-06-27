@@ -37,6 +37,7 @@ impl User {
 
 	pub fn ChangePassword(&mut self, oldPassword: str, newPassword: str) {
 		// verify password here
+		// hash and salt and shit
 		self.password = newPassword;
 		// add to database
 	}
