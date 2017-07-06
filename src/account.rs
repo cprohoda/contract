@@ -5,10 +5,17 @@ struct User {
 	username: str;
 	displayName: str;
 	balance: f32;
-	history: Vec<str>;
+	history: Vec<Action>;
 	skills: HashMap<str, u32>;
 	verified: bool;
 	permissions: PermissionLevel;
+}
+
+enum Action {
+	(ChangePassword, Parameters, Time),
+	ChangeDisplayName,
+	ViewHistory,
+	ViewSkills,
 }
 
 enum PermissionLevel {
